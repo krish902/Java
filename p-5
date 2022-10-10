@@ -1,0 +1,70 @@
+/*   ID   : 21CE012
+     Name : Krish
+     Aim  : According to question no 1, the Account class was defined to model a bank account. 
+            An account has the properties account number, balance, annual interest rate, and date 
+            created, and methods to deposit and withdraw funds. Create two subclasses for 
+            checking and saving accounts. A checking account has an overdraft limit, but a 
+            savings account cannot be overdrawn.
+*/
+
+public class Prac5_CheckingAccount extends Prac1_Account {
+
+    double overdraftLimit = 1000;
+    @Override
+    public void withdraw(double amt) {
+        if(amt<=getBalance()+overdraftLimit)
+            super.withdraw(amt);
+        else
+            System.out.println("Overdraft limit exceeds.");
+    }
+    
+}
+
+/*   ID   : 21CE012
+     Name : Krish
+     Aim  : According to question no 1, the Account class was defined to model a bank account. 
+            An account has the properties account number, balance, annual interest rate, and date 
+            created, and methods to deposit and withdraw funds. Create two subclasses for 
+            checking and saving accounts. A checking account has an overdraft limit, but a 
+            savings account cannot be overdrawn.
+*/
+
+public class Prac5_SavingAccount extends Prac1_Account{
+
+    @Override
+    public void withdraw(double amt) {
+        if(amt>getBalance()){
+            System.out.println("Not enough balance to withdraw.");
+        }
+        else{
+            super.withdraw(amt);
+        }
+    }
+ 
+}
+
+/*   ID   : 21CE012
+     Name : Krish
+     Aim  : According to question no 1, the Account class was defined to model a bank account. 
+            An account has the properties account number, balance, annual interest rate, and date 
+            created, and methods to deposit and withdraw funds. Create two subclasses for 
+            checking and saving accounts. A checking account has an overdraft limit, but a 
+            savings account cannot be overdrawn.
+*/
+
+public class Prac5_main {
+    public static void main(String[] args) {
+        Prac5_SavingAccount s = new Prac5_SavingAccount();
+        System.out.println("***Saving Account***");
+        s.setBalance(1000);
+        s.withdraw(200);
+        System.out.println("Balance = "+s.getBalance());
+
+        Prac5_CheckingAccount c = new Prac5_CheckingAccount();
+        System.out.println("***Checking Account***");
+        c.setBalance(1000);
+        c.withdraw(100);
+        System.out.println("Balance = "+c.getBalance());
+    }
+}
+
